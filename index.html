@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142b3a">
+  <title>Visual Memory Study</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="mark">M</span><span>MEMORY &amp; PERCEPTION</span></div>
+  <span class="tag">RESEARCH STUDY</span>
+</header>
+<main class="shell">
+  <section id="welcome" class="screen active">
+    <p class="eyebrow">PARTICIPANT SESSION</p>
+    <h1>Visual Memory Study</h1>
+    <p class="lead">This study explores how questions and feedback can influence memory for a brief traffic scene.</p>
+    <div class="meta">
+      <span>◷ &nbsp;About 3–5 minutes</span><span>▣ &nbsp;One short video</span><span>◎ &nbsp;Anonymous responses</span>
+    </div>
+    <div class="panel">
+      <h2>Before you begin</h2>
+      <p>You will watch an animated traffic scene, answer a question about it, select the image you believe appeared in the scene, and rate your confidence.</p>
+      <p>Please complete the study independently. Do not take screenshots or write down the scene details.</p>
+      <label class="consent"><input id="consent" type="checkbox"> I am at least 18 years old and agree to participate.</label>
+      <button class="primary" id="start" disabled>Begin study <span>→</span></button>
+    </div>
+    <p class="fine">Participation is voluntary. You may stop at any time by closing this page.</p>
+  </section>
+
+  <section id="study" class="screen">
+    <div class="progress">
+      <div><span id="step-label">STEP 1 OF 4</span><span id="step-percent">25%</span></div>
+      <div class="track"><div id="bar"></div></div>
+    </div>
+
+    <section class="stage active" id="stage-video">
+      <p class="eyebrow">OBSERVE THE SCENE</p>
+      <h1>Please watch the video.</h1>
+      <p class="instruction">Pay attention to the scene. The video will play automatically.</p>
+      <div class="video-box">
+        <video id="stimulus" playsinline muted preload="auto">
+          <source src="assets/stop-scene.mp4" type="video/mp4">
+        </video>
+        <img id="stimulus-gif" class="hidden" src="assets/stop-scene.gif" alt="Animated traffic scene">
+      </div>
+      <div class="video-status" id="video-status"><i></i> Video will begin when ready</div>
+      <button class="primary right" id="video-next" disabled>Continue <span>→</span></button>
+    </section>
+
+    <section class="stage" id="stage-question">
+      <p class="eyebrow">QUESTION 01</p>
+      <h1>Think back to the scene.</h1>
+      <p class="question" id="question-text"></p>
+      <div class="panel answer">
+        <label for="speed">Your estimate</label>
+        <div class="input-line"><input id="speed" type="number" min="0" max="200" step="1" placeholder="e.g. 25"><span>mph</span></div>
+        <small>Enter your best estimate.</small>
+      </div>
+      <button class="primary right" id="question-next">Continue <span>→</span></button>
+    </section>
+
+    <section class="stage" id="stage-recognition">
+      <p class="eyebrow">QUESTION 02</p>
+      <h1>Which image matches the scene?</h1>
+      <p class="instruction">Choose the one image you believe appeared in the video.</p>
+      <div class="choices" id="choices">
+        <button class="choice" data-sign="stop" aria-pressed="false">
+          <img src="assets/choice-stop.jpg" alt="Intersection with a stop sign"><span>Image A</span>
+        </button>
+        <button class="choice" data-sign="yield" aria-pressed="false">
+          <img src="assets/choice-yield.jpg" alt="Intersection with a yield sign"><span>Image B</span>
+        </button>
+      </div>
+      <button class="primary right" id="recognition-next" disabled>Confirm selection <span>→</span></button>
+    </section>
+
+    <section class="stage" id="stage-feedback">
+      <div class="feedback-icon">✓</div>
+      <p class="eyebrow">RESPONSE RECORDED</p>
+      <h1 id="feedback-text">Okay.</h1>
+      <p class="instruction">Continue to the final question.</p>
+      <button class="primary right" id="feedback-next">Continue <span>→</span></button>
+    </section>
+
+    <section class="stage" id="stage-confidence">
+      <p class="eyebrow">FINAL QUESTION</p>
+      <h1>How confident are you in your image selection?</h1>
+      <p class="instruction">1 means not at all confident; 10 means extremely confident.</p>
+      <div class="panel confidence">
+        <div class="score"><strong id="confidence-value">5</strong><span>/ 10</span></div>
+        <input id="confidence" type="range" min="1" max="10" value="5" step="1">
+        <div class="range-labels"><span>Not at all</span><span>Extremely</span></div>
+      </div>
+      <button class="primary right" id="submit">Submit responses <span>→</span></button>
+    </section>
+
+    <section class="stage" id="stage-complete">
+      <div class="complete-icon">✓</div>
+      <p class="eyebrow">SESSION COMPLETE</p>
+      <h1>Thank you for participating.</h1>
+      <p class="lead">Your responses have been saved in this browser.</p>
+      <div class="panel debrief">
+        <h2>Study debrief</h2>
+        <p>This study examines whether misleading post-event information changes recognition memory, and whether feedback after a selection influences confidence.</p>
+        <p>The original video always showed a STOP sign. Participants were randomly assigned to a question mentioning either a stop sign or a yield sign, and independently to either confirming (“Correct!”) or neutral (“Okay.”) feedback.</p>
+        <p>The STOP-sign image is the correct recognition response. The YIELD-sign image is the altered alternative. Feedback was assigned independently of actual accuracy.</p>
+      </div>
+      <div class="downloads">
+        <button class="primary" id="download-summary">Download summary CSV</button>
+        <button class="secondary" id="download-trials">Download trial-level CSV</button>
+        <button class="secondary" id="download-all">Download all sessions on this device</button>
+      </div>
+      <p class="fine">No data is sent to a server. Download your files before closing this page. The all-sessions file includes sessions stored in this browser only.</p>
+    </section>
+  </section>
+</main>
+<footer><span>VISUAL MEMORY STUDY</span><span>Thank you for your time</span></footer>
+<script src="script.js"></script>
+</body>
+</html>
